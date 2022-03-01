@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { ConnectWallet, useWallet } from '@web3-ui/core';
 
 export default function Home() {
+  const { connection } = useWallet();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,6 +15,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+      <div>
+        <ConnectWallet />
+        <div>{connection.ens || connection.userAddress}</div>
+      </div>
+
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
