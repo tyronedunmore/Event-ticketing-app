@@ -1,0 +1,16 @@
+pragma solidiity ^0.8.0
+
+
+contract EventTickets {
+
+    // state variables here
+    
+    //  events here 
+
+    // function modifiers here
+
+    // constructor here
+
+    // functions here
+    
+}
