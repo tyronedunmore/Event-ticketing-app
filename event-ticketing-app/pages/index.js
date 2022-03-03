@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>NF-Tickets</title>
         <meta name="description" content="team Oracle" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -21,7 +21,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Create NFTickets for an Event
+          Create Tickets for an Event
         </h1>
 
         <div className={styles.card}>
@@ -36,8 +36,18 @@ export default function Home() {
           <p className={styles.description}>
             Date of Event
           </p>
+          
 
           <input id={styles.event} type="date" autocomplete="name" required />
+        </div>
+
+        <div className={styles.card}>
+          <p className={styles.description}>
+            Enter Number of Tickets to Create 
+          </p>
+          
+
+          <input id={styles.event} type="text" autocomplete="name" placeholder="Number of tickets" required />
         </div>
       </main>
 
