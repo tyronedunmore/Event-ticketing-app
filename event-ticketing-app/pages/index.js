@@ -18,6 +18,9 @@ export default function Home() {
         <ConnectWallet />
         <div>{connection.ens || connection.userAddress}</div>
       </div>
+      <h1 className={styles.header}>
+          NF-Tickets
+        </h1>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
