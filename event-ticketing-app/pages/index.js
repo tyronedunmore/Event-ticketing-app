@@ -32,7 +32,7 @@ export default function Home() {
             Enter the Name of Your Event
           </p>
 
-          <input id={styles.event} type="text" autocomplete="name" placeholder="Name your event" required />
+          <input id={styles.event} type="text" autocomplete="name" placeholder=" Name your event" required />
         </div>
 
         <div className={styles.card}>
@@ -50,8 +50,16 @@ export default function Home() {
           </p>
           
 
-          <input id={styles.event} type="text" autocomplete="name" placeholder="Number of tickets" required />
+          <input id={styles.event} type="text" autocomplete="name" placeholder=" Number of tickets" required />
         </div>
+
+        <div className={styles.card} id={styles.coloredButton}>
+    
+          <button className={styles.button} type="button">Mint!</button>
+          
+        </div>
+        
+
       </main>
 
       <footer className={styles.footer}>
