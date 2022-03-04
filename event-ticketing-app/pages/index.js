@@ -1,10 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { useState } from 'react';
 import styles from '../styles/Home.module.css'
 import { ConnectWallet, useWallet } from '@web3-ui/core';
 
 export default function Home() {
   const { connection } = useWallet();
+  let [event, setEvent] = useState({});
+
+  const validDate = (e) => {
+    let curDate = new Date();
+    let tempDate = new Date(e.target.value);
+
+    if(curDate <= tempDate) {
+      setEvent({...event, 'date': e.target.value})
+    } else {
+      alert('invalid date')
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -20,46 +32,39 @@ export default function Home() {
       </div>
       <h1 className={styles.header}>
           NF-Tickets
-        </h1>
+      </h1>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
           Create Tickets for an Event
         </h1>
 
-        <div className={styles.card}>
-          <p className={styles.description}>
-            Enter the Name of Your Event
-          </p>
+        <form className={styles.main}>
+          <div className={styles.card}>
+            <p className={styles.description}> Enter the Name of Your Event </p>
 
-          <input id={styles.event} type="text" autocomplete="name" placeholder=" Name your event" required />
-        </div>
+            <input className={styles.event} type="text" autoComplete="name" placeholder="Name your event" onChange={(e) => { 
+              setEvent({'title': e.target.value})
+            }} required />
+          </div>
 
-        <div className={styles.card}>
-          <p className={styles.description}>
-            Date of Event
-          </p>
-          
+          <div className={styles.card}>
+            <p className={styles.description}> Date of Event </p>
 
-          <input id={styles.event} type="date" autocomplete="name" required />
-        </div>
+            <input id="date" className={styles.event} type="date" autoComplete="name" onChange={validDate} required />
+          </div>
 
-        <div className={styles.card}>
-          <p className={styles.description}>
-            Enter Number of Tickets to Create 
-          </p>
-          
+          <div className={styles.card}>
+            <p className={styles.description}> Number of Tickets </p>
 
-          <input id={styles.event} type="text" autocomplete="name" placeholder=" Number of tickets" required />
-        </div>
+            <input className={styles.event} type="text" autoComplete="name" placeholder="Number of tickets" 
+              onChange={(e) => { 
+                setEvent({...event, 'tickets': Number(e.target.value)})
+            }} required />
+          </div>
 
-        <div className={styles.card} id={styles.coloredButton}>
-    
-          <button className={styles.button} type="button">Mint!</button>
-          
-        </div>
-        
-
+           <input type="submit" className={styles.fancyButton} onClick={(e) => {alert(JSON.stringify(event))}}/>
+        </form>
       </main>
 
       <footer className={styles.footer}>
