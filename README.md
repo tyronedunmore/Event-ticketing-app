@@ -7,7 +7,6 @@
     <li>React.js
     <li>solidity
     <li>javascript
-    <li> <a href="https://github.com/Developer-DAO/web3-ui">Web3 UI components</a>
 </ul>
 
 <h2>Getting Started</h2>
