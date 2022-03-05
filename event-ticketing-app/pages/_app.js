@@ -1,5 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css'
-import { Provider, NETWORKS } from '@web3-ui/core';
+import { NETWORKS } from '@web3-ui/core';
+import { Provider } from 'wagmi'
+
 
 function MyApp({ Component, pageProps }) {
   return (

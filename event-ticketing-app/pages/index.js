@@ -1,70 +1,59 @@
 import Head from 'next/head'
-import { useState } from 'react';
 import styles from '../styles/Home.module.css'
-import { ConnectWallet, useWallet } from '@web3-ui/core';
+import HeaderMUI from '../components/header-mui.js'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import DateTime from '../components/date-time.js'
+import TextField from '@mui/material/TextField';
+
 
 export default function Home() {
-  const { connection } = useWallet();
-  let [event, setEvent] = useState({});
 
-  const validDate = (e) => {
-    let curDate = new Date();
-    let tempDate = new Date(e.target.value);
-
-    if(curDate <= tempDate) {
-      setEvent({...event, 'date': e.target.value})
-    } else {
-      alert('invalid date')
-    }
-  }
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>NF-Tickets</title>
-        <meta name="description" content="team Oracle" />
+        <title>🎟️ NF-Tickets 🎟️</title>
+        <meta name="description" content="Team Oracle" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.web3}>
-        <ConnectWallet />
-        <div>{connection.ens || connection.userAddress}</div>
-      </div>
-      <h1 className={styles.header}>
-          NF-Tickets
-      </h1>
+      <HeaderMUI />
+
 
       <main className={styles.main}>
         <h1 className={styles.title}>
           Create Tickets for an Event
         </h1>
+    <br/>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <Item>Event Name</Item>
+              <TextField>Event Name</TextField>
 
-        <form className={styles.main}>
-          <div className={styles.card}>
-            <p className={styles.description}> Enter the Name of Your Event </p>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>Event Date</Item>
+              <Item><DateTime/></Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>Ticket Quantity</Item>
+              <TextField type="number">Event Name</TextField>
 
-            <input className={styles.event} type="text" autoComplete="name" placeholder="Name your event" onChange={(e) => { 
-              setEvent({'title': e.target.value})
-            }} required />
-          </div>
-
-          <div className={styles.card}>
-            <p className={styles.description}> Date of Event </p>
-
-            <input id="date" className={styles.event} type="date" autoComplete="name" onChange={validDate} required />
-          </div>
-
-          <div className={styles.card}>
-            <p className={styles.description}> Number of Tickets </p>
-
-            <input className={styles.event} type="text" autoComplete="name" placeholder="Number of tickets" 
-              onChange={(e) => { 
-                setEvent({...event, 'tickets': Number(e.target.value)})
-            }} required />
-          </div>
-
-           <input type="submit" className={styles.fancyButton} onClick={(e) => {alert(JSON.stringify(event))}}/>
-        </form>
+            </Grid>
+          </Grid>
+        </Box>
       </main>
 
       <footer className={styles.footer}>
